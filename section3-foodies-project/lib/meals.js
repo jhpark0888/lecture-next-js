@@ -1,9 +1,20 @@
 import fs from 'node:fs';
-
 import sql from 'better-sqlite3';
 import slugify from 'slugify';
 import xss from 'xss';
+import { S3 } from '@aws-sdk/client-s3';
+import { S3_URL_PREFIX } from '@/constants/s3';
+require('dotenv').config();
 
+const s3 = new S3({
+    region: 'us-east-1',
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    }
+});
+
+ 
 const db = sql('meals.db');
 
 export async function getMeals() {
@@ -22,17 +33,28 @@ export async function saveMeal(meal) {
 
     const extension = meal.image.name.split('.').pop();
     const fileName = `${meal.slug}.${extension}`;
-
-    const stream = fs.createWriteStream(`public/images/${fileName}`);
     const bufferedImage = await meal.image.arrayBuffer();
 
-    stream.write(Buffer.from(bufferedImage), (error) => {
-        if (error) {
-            throw new Error('Saving image Failed');
-        }
-    });
+    // // 로컬 파일 시스템에 파일 저장
+    // const stream = fs.createWriteStream(`public/images/${fileName}`);
 
-    meal.image = `/images/${fileName}`;
+    // stream.write(Buffer.from(bufferedImage), (error) => {
+    //     if (error) {
+    //         throw new Error('Saving image Failed');
+    //     }
+    // });
+    
+    // meal.image = `/images/${fileName}`;
+
+    // s3에 파일 저장
+    s3.putObject({
+        Bucket: process.env.S3_BUCKET,
+        Key: fileName,
+        Body: Buffer.from(bufferedImage),
+        ContentType: meal.image.type,
+    })
+
+    meal.image = `${S3_URL_PREFIX}/${fileName}`;
 
     db.prepare(`
         INSERT INTO meals
