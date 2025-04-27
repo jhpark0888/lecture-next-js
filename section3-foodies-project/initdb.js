@@ -1,8 +1,7 @@
-import { S3_URL_PREFIX } from './constants/s3';
+import { S3_URL_PREFIX } from './constants/s3.js';
+import sql from 'better-sqlite3';
 
-const sql = require('better-sqlite3');
 const db = sql('meals.db');
-
 
 const dummyMeals = [
   {
