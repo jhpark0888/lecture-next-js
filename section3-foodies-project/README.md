@@ -74,6 +74,7 @@ npm run dev
 
 ## 📁 폴더 구조
 
+```
 root/
 ├── assets/             # 정적 파일 (이미지, 폰트 등)
 ├── app/                # 화면 파일
@@ -88,5 +89,6 @@ root/
 ├── .gitignore          # Git 무시 설정 파일
 ├── package.json        # 프로젝트 설정 및 의존성
 └── README.md           # 프로젝트 소개 문서
+```
 
 <br>
