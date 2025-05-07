@@ -124,7 +124,8 @@
 ## 🔨 설치 및 실행 방법
 
 ```bash
-git clone https://github.com/jhpark0888/next-js-foodies-starting-project.git
+git clone https://github.com/jhpark0888/lecture-next-js.git
+cd section3-foodies-project
 npm install
 npm run dev
 ```
