@@ -76,26 +76,25 @@
   <tr>
     <td>메인 페이지</td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/c86ed944-b811-47f0-989f-cc751982d648" width="1413" />
+      <img src="https://github.com/user-attachments/assets/6d761976-f8d9-4fb6-8099-28a7492f10b7" width="1413" />
     </td>
   </tr>
   <tr>
     <td>음식 목록 페이지</td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/70c61e24-c997-481c-bc51-0c38495650c7" width="1422" />
+      <img src="https://github.com/user-attachments/assets/15646022-05a7-43f3-8a18-9750b6e3ba36" width="1422" />
     </td>
   </tr>
   <tr>
     <td>음식 상세 페이지</td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/667de01a-65a7-4b48-aa84-39da8c9c9eeb" width="1429" />
+      <img src="https://github.com/user-attachments/assets/579c42e0-7913-4b19-a983-572cc9182bc4" width="1429" />
     </td>
   </tr>
   <tr>
     <td>음식 추가 페이지</td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/8c0a98a0-1435-48d9-a285-92d3b3a9bbbf" width="380" />
-      <img src="https://github.com/user-attachments/assets/c7ed411e-f83f-4ea8-bf76-29f3eb6519d6" width="380" />
+      <img src="https://github.com/user-attachments/assets/9f92d3b4-d123-43fd-ac7a-b111a588b537" width="380" />
     </td>
   </tr>
 </table>
