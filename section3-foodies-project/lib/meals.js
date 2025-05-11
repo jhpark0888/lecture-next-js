@@ -1,4 +1,3 @@
-import fs from 'node:fs';
 import sql from 'better-sqlite3';
 import slugify from 'slugify';
 import xss from 'xss';
@@ -32,6 +31,7 @@ export async function saveMeal(meal) {
 
     const extension = meal.image.name.split('.').pop();
     const fileName = `${meal.slug}.${extension}`;
+    const pathKey = `foodies/${fileName}`;
     const bufferedImage = await meal.image.arrayBuffer();
 
     // // 로컬 파일 시스템에 파일 저장
@@ -48,12 +48,12 @@ export async function saveMeal(meal) {
     // s3에 파일 저장
     s3.putObject({
         Bucket: process.env.S3_BUCKET,
-        Key: fileName,
+        Key: pathKey,
         Body: Buffer.from(bufferedImage),
         ContentType: meal.image.type,
     })
 
-    meal.image = `${S3_URL_PREFIX}/${fileName}`;
+    meal.image = `${S3_URL_PREFIX}/${pathKey}`;
 
     db.prepare(`
         INSERT INTO meals
