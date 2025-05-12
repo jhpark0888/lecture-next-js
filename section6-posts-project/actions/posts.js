@@ -45,6 +45,9 @@ export async function createPost(prevState, formData) {
       userId: 1
     });
 
+    // NextJS는 빌드할 때 동적 페이지 및 동적 세그먼트를 제외한 모든 페이지들을 사전렌더링한 후 캐싱한다.
+    // 따라서 데이터가 변경된 후 특정 페이지를 최신화하기 위해서는 NextJS에게 특정 페이지에 대해 재검증을 요청 해야한다.
+    revalidatePath('/', 'layout');
     redirect('/feed');
   }
 
