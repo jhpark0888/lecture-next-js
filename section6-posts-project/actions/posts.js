@@ -3,6 +3,7 @@
 import { storePost, updatePostLikeStatus } from '@/lib/posts';
 import { redirect } from 'next/navigation';
 import { uploadImage } from '@/lib/s3';
+import { revalidatePath } from 'next/cache';
 
 export async function createPost(prevState, formData) {
     const title = formData.get('title');
@@ -49,4 +50,7 @@ export async function createPost(prevState, formData) {
 
   export async function togglePostLikeStatus(postId) {
     updatePostLikeStatus(postId, 2);
+    // NextJS는 기본적으로 강력한 캐시를 적용한다.
+    // 따라서 데이터가 변경된 후 특정 페이지를 최신화하기 위해서는 NextJS에게 특정 페이지에 대해 재검증을 요청 해야한다.
+    revalidatePath('/', 'layout');
   }
